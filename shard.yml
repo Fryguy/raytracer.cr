@@ -1,0 +1,13 @@
+name: raytracer
+version: 0.1.0
+
+authors:
+  - Jason Frey <fryguy9@gmail.com>
+
+targets:
+  raytracer:
+    main: src/raytracer.cr
+
+crystal: 1.9.2
+
+license: MIT

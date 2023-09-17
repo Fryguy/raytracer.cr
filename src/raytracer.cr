@@ -4,3 +4,5 @@ module Raytracer
 
   # TODO: Put your code here
 end
+
+require "./raytracer/*"

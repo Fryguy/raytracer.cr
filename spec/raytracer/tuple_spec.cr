@@ -19,6 +19,16 @@ describe Raytracer::Tuple do
       t.vector?.should be_true
       t.point?.should be_false
     end
+
+    it "creates a tuple with integers" do
+      t = Raytracer::Tuple.new(4, -4, 3, 1)
+      t.x.should eq 4.0
+      t.y.should eq -4.0
+      t.z.should eq 3.0
+      t.w.should eq 1.0
+      t.point?.should be_true
+      t.vector?.should be_false
+    end
   end
 
   describe ".point" do

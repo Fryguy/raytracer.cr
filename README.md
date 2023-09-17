@@ -1,18 +1,6 @@
-# raytracer
+# raytracer.cr
 
-TODO: Write a description here
-
-## Installation
-
-TODO: Write installation instructions here
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
+This repository is an implementation of [The Ray Tracer Challenge](http://raytracerchallenge.com/), by Jamis Buck, in the Crystal programming language.
 
 ## Contributing
 
@@ -25,3 +13,7 @@ TODO: Write development instructions here
 ## Contributors
 
 - [Jason Frey](https://github.com/Fryguy) - creator and maintainer
+
+## License
+
+The project is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

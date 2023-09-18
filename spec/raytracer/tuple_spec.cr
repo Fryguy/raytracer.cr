@@ -29,6 +29,12 @@ describe Raytracer::Tuple do
       t.point?.should be_true
       t.vector?.should be_false
     end
+
+    it "when w is an illegal value" do
+      expect_raises(ArgumentError) do
+        Raytracer::Tuple.new(4, -4, 3, 3)
+      end
+    end
   end
 
   describe ".point" do
@@ -92,6 +98,68 @@ describe Raytracer::Tuple do
     it "with a point" do
       t = Raytracer::Tuple.point(4.3, -4.2, 3.1)
       t.vector?.should be_false
+    end
+  end
+
+  describe "#+" do
+    it "can add 2 tuples" do
+      t1 = Raytracer::Tuple.new(3, -2, 5, 1)
+      t2 = Raytracer::Tuple.new(-2, 3, 1, 0)
+      t3 = t1 + t2
+      t3.should eq Raytracer::Tuple.new(1, 1, 6, 1)
+    end
+
+    it "can add a point and vector" do
+      p = Raytracer::Tuple.point(3, -2, 5)
+      v = Raytracer::Tuple.vector(-2, 3, 1)
+      p2 = p + v
+      p2.should eq Raytracer::Tuple.point(1, 1, 6)
+    end
+
+    it "can add 2 vectors" do
+      v1 = Raytracer::Tuple.vector(3, -2, 5)
+      v2 = Raytracer::Tuple.vector(-2, 3, 1)
+      v3 = v1 + v2
+      v3.should eq Raytracer::Tuple.vector(1, 1, 6)
+    end
+
+    it "cannot add 2 points" do
+      p1 = Raytracer::Tuple.point(3, -2, 5)
+      p2 = Raytracer::Tuple.point(-2, 3, 1)
+      expect_raises(ArgumentError) do
+        p1 + p2
+      end
+    end
+  end
+
+  describe "#-" do
+    it "can subtract 2 points" do
+      p1 = Raytracer::Tuple.point(3, 2, 1)
+      p2 = Raytracer::Tuple.point(5, 6, 7)
+      v = p1 - p2
+      v.should eq Raytracer::Tuple.vector(-2, -4, -6)
+    end
+
+    it "can subtract a vector from a point" do
+      p = Raytracer::Tuple.point(3, 2, 1)
+      v = Raytracer::Tuple.vector(5, 6, 7)
+      p2 = p - v
+      p2.should eq Raytracer::Tuple.point(-2, -4, -6)
+    end
+
+    it "can subtract 2 vectors" do
+      v1 = Raytracer::Tuple.vector(3, 2, 1)
+      v2 = Raytracer::Tuple.vector(5, 6, 7)
+      v3 = v1 - v2
+      v3.should eq Raytracer::Tuple.vector(-2, -4, -6)
+    end
+
+    it "cannot subtract a point from a vector" do
+      v = Raytracer::Tuple.vector(3, 2, 1)
+      p = Raytracer::Tuple.point(5, 6, 7)
+      expect_raises(ArgumentError) do
+        v - p
+      end
     end
   end
 end

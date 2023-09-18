@@ -28,5 +28,9 @@ module Raytracer
     def -(other)
       self.class.new(x - other.x, y - other.y, z - other.z, w - other.w)
     end
+
+    def -
+      self.class.new(-x, -y, -z, -w)
+    end
   end
 end

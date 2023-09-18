@@ -161,5 +161,27 @@ describe Raytracer::Tuple do
         v - p
       end
     end
+
+    it "can subtract a vector from the zero vector" do
+      zero = Raytracer::Tuple.vector(0, 0, 0)
+      v = Raytracer::Tuple.vector(1, -2, 3)
+      v2 = zero - v
+      v2.should eq Raytracer::Tuple.vector(-1, 2, -3)
+    end
+  end
+
+  describe "#- (unary)" do
+    it "negates a vector" do
+      v = Raytracer::Tuple.vector(1, -2, 3)
+      v2 = -v
+      v2.should eq Raytracer::Tuple.vector(-1, 2, -3)
+    end
+
+    it "cannot negate a point" do
+      p = Raytracer::Tuple.point(1, -2, 3)
+      expect_raises(ArgumentError) do
+        -p
+      end
+    end
   end
 end

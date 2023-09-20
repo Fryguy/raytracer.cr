@@ -27,5 +27,13 @@ module Raytracer
     def -
       self.class.new(-x, -y, -z, -w)
     end
+
+    def *(value : Float64)
+      self.class.new(x * value, y * value, z * value, w * value)
+    end
+
+    def /(value : Float64)
+      self.class.new(x / value, y / value, z / value, w / value)
+    end
   end
 end

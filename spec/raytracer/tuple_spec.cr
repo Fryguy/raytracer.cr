@@ -184,4 +184,26 @@ describe Raytracer::Tuple do
       end
     end
   end
+
+  describe "#*" do
+    it "with a scalar" do
+      t = Raytracer::Tuple.new(1, -2, 3, -4)
+      t2 = t * 3.5
+      t2.should eq Raytracer::Tuple.new(3.5, -7, 10.5, -14)
+    end
+
+    it "with a fraction" do
+      t = Raytracer::Tuple.new(1, -2, 3, -4)
+      t2 = t * 0.5
+      t2.should eq Raytracer::Tuple.new(0.5, -1, 1.5, -2)
+    end
+  end
+
+  describe "/*" do
+    it "with a scalar" do
+      t = Raytracer::Tuple.new(1, -2, 3, -4)
+      t2 = t / 2
+      t2.should eq Raytracer::Tuple.new(0.5, -1, 1.5, -2)
+    end
+  end
 end

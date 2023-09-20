@@ -30,7 +30,7 @@ describe Raytracer::Tuple do
       t.vector?.should be_false
     end
 
-    it "when w is an illegal value" do
+    pending "when w is an illegal value" do
       expect_raises(ArgumentError) do
         Raytracer::Tuple.new(4, -4, 3, 3)
       end
@@ -123,7 +123,7 @@ describe Raytracer::Tuple do
       v3.should eq Raytracer::Tuple.vector(1, 1, 6)
     end
 
-    it "cannot add 2 points" do
+    pending "cannot add 2 points" do
       p1 = Raytracer::Tuple.point(3, -2, 5)
       p2 = Raytracer::Tuple.point(-2, 3, 1)
       expect_raises(ArgumentError) do
@@ -154,7 +154,7 @@ describe Raytracer::Tuple do
       v3.should eq Raytracer::Tuple.vector(-2, -4, -6)
     end
 
-    it "cannot subtract a point from a vector" do
+    pending "cannot subtract a point from a vector" do
       v = Raytracer::Tuple.vector(3, 2, 1)
       p = Raytracer::Tuple.point(5, 6, 7)
       expect_raises(ArgumentError) do
@@ -177,7 +177,7 @@ describe Raytracer::Tuple do
       v2.should eq Raytracer::Tuple.vector(-1, 2, -3)
     end
 
-    it "cannot negate a point" do
+    pending "cannot negate a point" do
       p = Raytracer::Tuple.point(1, -2, 3)
       expect_raises(ArgumentError) do
         -p

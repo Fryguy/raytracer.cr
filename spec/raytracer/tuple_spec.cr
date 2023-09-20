@@ -206,4 +206,23 @@ describe Raytracer::Tuple do
       t2.should eq Raytracer::Tuple.new(0.5, -1, 1.5, -2)
     end
   end
+
+  describe "#magnitude" do
+    it "takes the magnitude" do
+      v = Raytracer::Tuple.vector(1, 0, 0)
+      v.magnitude.should eq 1
+
+      v = Raytracer::Tuple.vector(0, 1, 0)
+      v.magnitude.should eq 1
+
+      v = Raytracer::Tuple.vector(0, 0, 1)
+      v.magnitude.should eq 1
+
+      v = Raytracer::Tuple.vector(1, 2, 3)
+      v.magnitude.should eq Math.sqrt(14)
+
+      v = Raytracer::Tuple.vector(-1, -2, -3)
+      v.magnitude.should eq Math.sqrt(14)
+    end
+  end
 end

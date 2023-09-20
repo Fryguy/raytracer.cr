@@ -35,5 +35,10 @@ module Raytracer
     def /(value : Float64)
       self.class.new(x / value, y / value, z / value, w / value)
     end
+
+    @magnitude : Float64?
+    def magnitude
+      @magnitude ||= Math.sqrt(x ** 2 + y ** 2 + z ** 2 + w ** 2)
+    end
   end
 end

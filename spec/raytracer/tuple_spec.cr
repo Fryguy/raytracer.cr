@@ -224,5 +224,21 @@ describe Raytracer::Tuple do
       v = Raytracer::Tuple.vector(-1, -2, -3)
       v.magnitude.should eq Math.sqrt(14)
     end
+
+    it "of a normalized vector" do
+      v = Raytracer::Tuple.vector(1, 2, 3)
+      n = v.normalize
+      n.magnitude.should eq 1
+    end
+  end
+
+  describe "#normalize" do
+    it "normalizes the vector" do
+      v = Raytracer::Tuple.vector(4, 0, 0)
+      v.normalize.should eq Raytracer::Tuple.vector(1, 0, 0)
+
+      v = Raytracer::Tuple.vector(1, 2, 3)
+      v.normalize.should eq Raytracer::Tuple.vector(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14))
+    end
   end
 end

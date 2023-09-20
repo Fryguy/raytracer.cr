@@ -7,7 +7,7 @@ module Raytracer
     def point?
       w == 1.0
     end
-    
+
     def self.vector(x, y, z)
       new(x, y, z, 0.0)
     end
@@ -39,6 +39,10 @@ module Raytracer
     @magnitude : Float64?
     def magnitude
       @magnitude ||= Math.sqrt(x ** 2 + y ** 2 + z ** 2 + w ** 2)
+    end
+
+    def normalize
+      self / magnitude
     end
   end
 end

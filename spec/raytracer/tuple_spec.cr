@@ -257,5 +257,14 @@ describe Raytracer::Tuple do
       v1.cross(v2).should eq Raytracer::Tuple.vector(-1, 2, -1)
       v2.cross(v1).should eq Raytracer::Tuple.vector(1, -2, 1)
     end
+
+    it "with perpedicular vectors" do
+      x = Raytracer::Tuple.vector(1, 0, 0)
+      y = Raytracer::Tuple.vector(0, 1, 0)
+      z = Raytracer::Tuple.vector(0, 0, 1)
+      x.cross(y).should eq z
+      y.cross(z).should eq x
+      z.cross(x).should eq y
+    end
   end
 end

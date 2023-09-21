@@ -241,4 +241,12 @@ describe Raytracer::Tuple do
       v.normalize.should eq Raytracer::Tuple.vector(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14))
     end
   end
+
+  describe "#dot" do
+    it "computes the dot product" do
+      v1 = Raytracer::Tuple.vector(1, 2, 3)
+      v2 = Raytracer::Tuple.vector(2, 3, 4)
+      v1.dot(v2).should eq 20
+    end
+  end
 end

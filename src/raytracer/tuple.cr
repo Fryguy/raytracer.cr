@@ -44,5 +44,9 @@ module Raytracer
     def normalize
       self / magnitude
     end
+
+    def dot(other)
+      x * other.x + y * other.y + z * other.z + w * other.w
+    end
   end
 end

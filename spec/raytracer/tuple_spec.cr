@@ -249,4 +249,13 @@ describe Raytracer::Tuple do
       v1.dot(v2).should eq 20
     end
   end
+
+  describe "#cross" do
+    it "computes the cross product" do
+      v1 = Raytracer::Tuple.vector(1, 2, 3)
+      v2 = Raytracer::Tuple.vector(2, 3, 4)
+      v1.cross(v2).should eq Raytracer::Tuple.vector(-1, 2, -1)
+      v2.cross(v1).should eq Raytracer::Tuple.vector(1, -2, 1)
+    end
+  end
 end

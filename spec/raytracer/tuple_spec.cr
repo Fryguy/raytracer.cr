@@ -265,6 +265,7 @@ describe Raytracer::Tuple do
       x.cross(y).should eq z
       y.cross(z).should eq x
       z.cross(x).should eq y
+      y.cross(x).should eq -z
     end
   end
 end

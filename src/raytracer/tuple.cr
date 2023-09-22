@@ -1,5 +1,14 @@
 module Raytracer
   record Tuple, x : Float64, y : Float64, z : Float64, w : Float64 do
+    def ==(other)
+      return false unless other.is_a?(self)
+
+      (x - other.x).abs < EPSILON &&
+        (y - other.y).abs < EPSILON &&
+        (z - other.z).abs < EPSILON &&
+        (w - other.w).abs < EPSILON
+    end
+
     def self.point(x, y, z)
       new(x, y, z, 1.0)
     end

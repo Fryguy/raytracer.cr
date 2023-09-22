@@ -37,6 +37,13 @@ describe Raytracer::Tuple do
     end
   end
 
+  describe "#==" do
+    it "handles floating points within EPSILON" do
+      t = Raytracer::Tuple.new(0.33333, 0.33333, 0.33333, 0.33333)
+      t.should eq Raytracer::Tuple.new(1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0)
+    end
+  end
+
   describe ".point" do
     it "creates a point" do
       t = Raytracer::Tuple.point(4.3, -4.2, 3.1)

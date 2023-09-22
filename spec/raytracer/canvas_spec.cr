@@ -11,25 +11,25 @@ describe Raytracer::Canvas do
     end
   end
 
-  describe "#write_pixel / #pixel_at" do
+  describe "#[]= / #[]" do
     it "writes a pixel color and reads it back out" do
       c = Raytracer::Canvas.new(10, 20)
       red = Raytracer::Color.new(1, 0, 0)
-      c.write_pixel(2, 3, red)
-      c.pixel_at(2, 3).should eq red
+      c[2, 3] = red
+      c[2, 3].should eq red
     end
 
     it "raises on out of bounds writes/reads" do
       c = Raytracer::Canvas.new(10, 20)
       red = Raytracer::Color.new(1, 0, 0)
-      expect_raises(IndexError) { c.write_pixel(-1, 0, red) }
-      expect_raises(IndexError) { c.write_pixel(10, 0, red) }
-      expect_raises(IndexError) { c.write_pixel(0, -1, red) }
-      expect_raises(IndexError) { c.write_pixel(0, 20, red) }
-      expect_raises(IndexError) { c.pixel_at(-1, 0) }
-      expect_raises(IndexError) { c.pixel_at(10, 0) }
-      expect_raises(IndexError) { c.pixel_at(0, -1) }
-      expect_raises(IndexError) { c.pixel_at(0, 20) }
+      expect_raises(IndexError) { c[-1, 0] = red }
+      expect_raises(IndexError) { c[10, 0] = red }
+      expect_raises(IndexError) { c[0, -1] = red }
+      expect_raises(IndexError) { c[0, 20] = red }
+      expect_raises(IndexError) { c[-1, 0] }
+      expect_raises(IndexError) { c[10, 0] }
+      expect_raises(IndexError) { c[0, -1] }
+      expect_raises(IndexError) { c[0, 20] }
     end
   end
 end

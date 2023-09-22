@@ -1,0 +1,15 @@
+---
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: crystal-lang/install-crystal@v1
+    - run: crystal spec -v --order random

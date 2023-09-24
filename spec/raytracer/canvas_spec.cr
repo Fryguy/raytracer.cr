@@ -45,6 +45,7 @@ describe Raytracer::Canvas do
   describe "#to_ppm" do
     it "has a valid header" do
       c = Raytracer::Canvas.new(5, 3)
+
       ppm = c.to_ppm
       ppm.lines[0..2].join("\n").should eq <<-PPM
         P3
@@ -55,12 +56,10 @@ describe Raytracer::Canvas do
 
     it "has the pixel data" do
       c = Raytracer::Canvas.new(5, 3)
-      c1 = Raytracer::Color.new(1.5, 0, 0)
-      c2 = Raytracer::Color.new(0, 0.5, 0)
-      c3 = Raytracer::Color.new(-0.5, 0, 1)
-      c[0, 0] = c1
-      c[2, 1] = c2
-      c[4, 2] = c3
+      c[0, 0] = Raytracer::Color.new(1.5, 0, 0)
+      c[2, 1] = Raytracer::Color.new(0, 0.5, 0)
+      c[4, 2] = Raytracer::Color.new(-0.5, 0, 1)
+
       ppm = c.to_ppm
       ppm.lines[3..5].join("\n").should eq <<-PPM
         255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -72,6 +71,7 @@ describe Raytracer::Canvas do
     it "splits long lines" do
       c1 = Raytracer::Color.new(1, 0.8, 0.6)
       c = Raytracer::Canvas.new(10, 2, c1)
+
       ppm = c.to_ppm
       ppm.lines[3..6].join("\n").should eq <<-PPM
         255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
@@ -83,6 +83,7 @@ describe Raytracer::Canvas do
 
     it "ends with a newline character" do
       c = Raytracer::Canvas.new(5, 3)
+
       ppm = c.to_ppm
       ppm[-1].should eq '\n'
     end

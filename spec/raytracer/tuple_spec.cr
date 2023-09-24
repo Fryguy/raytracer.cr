@@ -1,3 +1,5 @@
+require "../spec_helper"
+
 describe Raytracer::Tuple do
   describe ".new" do
     it "with w=1.0 is a point" do

@@ -1,3 +1,5 @@
+require "../spec_helper"
+
 describe Raytracer::Color do
   describe ".new" do
     it "creates a new color" do

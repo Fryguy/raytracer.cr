@@ -23,5 +23,11 @@ module Raytracer
     def *(other : self)
       self.class.new(red * other.red, green * other.green, blue * other.blue)
     end
+
+    def to_rgb
+      return (red * 255).round.to_i.clamp(0, 255),
+        (green * 255).round.to_i.clamp(0, 255),
+        (blue * 255).round.to_i.clamp(0, 255)
+    end
   end
 end

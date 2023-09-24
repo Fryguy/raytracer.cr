@@ -47,4 +47,16 @@ describe Raytracer::Color do
       c3.should eq Raytracer::Color.new(0.9, 0.2, 0.04)
     end
   end
+
+  describe "#to_rgb" do
+    it "returns rgb values in the 0-255 range" do
+      c = Raytracer::Color.new(0, 0.5, 1)
+      c.to_rgb.should eq({0, 128, 255})
+    end
+
+    it "clamps values outside of the 0-255 range" do
+      c = Raytracer::Color.new(-0.5, 0.5, 1.5)
+      c.to_rgb.should eq({0, 128, 255})
+    end
+  end
 end

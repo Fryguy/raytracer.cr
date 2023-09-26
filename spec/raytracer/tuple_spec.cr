@@ -208,7 +208,7 @@ describe Raytracer::Tuple do
     end
   end
 
-  describe "/*" do
+  describe "#/" do
     it "with a scalar" do
       t = Raytracer::Tuple.new(1, -2, 3, -4)
       t2 = t / 2

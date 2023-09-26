@@ -13,6 +13,6 @@ def run_example(*args)
     args = args.to_a + ["--output", t]
     status = Process.run("crystal", args)
     status.success?.should be_true
-    File.read(t)
+    File.exists?(t) ? File.read(t) : ""
   end
 end

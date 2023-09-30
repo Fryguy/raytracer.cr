@@ -110,6 +110,27 @@ describe Raytracer::Tuple do
     end
   end
 
+  describe "#[]" do
+    it "indexes the tuple" do
+      t = Raytracer::Tuple.new(3, -2, 5, 1)
+      t[0].should eq 3
+      t[1].should eq -2
+      t[2].should eq 5
+      t[3].should eq 1
+
+      t[-1].should eq 1
+      t[-2].should eq 5
+      t[-3].should eq -2
+      t[-4].should eq 3
+    end
+
+    it "raises on out of bounds" do
+      t = Raytracer::Tuple.new(3, -2, 5, 1)
+      expect_raises(IndexError) { t[-5] }
+      expect_raises(IndexError) { t[4] }
+    end
+  end
+
   describe "#+" do
     it "can add 2 tuples" do
       t1 = Raytracer::Tuple.new(3, -2, 5, 1)

@@ -170,5 +170,19 @@ describe Raytracer::Matrix do
         ]
       )
     end
+
+    it "multiplies a matrix with a Tuple" do
+      m = Raytracer::Matrix.new(4,
+        [
+          1, 2, 3, 4,
+          2, 4, 4, 2,
+          8, 6, 4, 1,
+          0, 0, 0, 1,
+        ]
+      )
+      t1 = Raytracer::Tuple.new(1, 2, 3, 1)
+      t2 = m * t1
+      t2.should eq Raytracer::Tuple.new(18, 24, 33, 1)
+    end
   end
 end

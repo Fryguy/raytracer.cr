@@ -1,3 +1,5 @@
+require "./tuple"
+
 module Raytracer
   class Matrix
     getter order : Int32
@@ -24,7 +26,7 @@ module Raytracer
       content.each_with_index.all? { |v, i| (v - other.content[i]).abs < EPSILON }
     end
 
-    def *(other)
+    def *(other : Matrix)
       new_content =
         (0...content.size).map do |i|
           r, c = i.divmod(order)
@@ -35,6 +37,17 @@ module Raytracer
         end
 
       self.class.new(order, new_content)
+    end
+
+    def *(other : Tuple)
+      x, y, z, w =
+        (0...order).map do |r|
+          (0...order).sum do |i|
+            self[r, i] * other[i]
+          end
+        end
+
+      Raytracer::Tuple.new(x, y, z, w)
     end
   end
 end

@@ -15,6 +15,9 @@ module Raytracer
     end
 
     def [](row, column)
+      raise IndexError.new("row index out of bounds") unless 0 <= row < rows
+      raise IndexError.new("column index out of bounds") unless 0 <= column < columns
+
       content[row * rows + column]
     end
   end

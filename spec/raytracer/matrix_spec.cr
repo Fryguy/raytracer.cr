@@ -44,5 +44,43 @@ describe Raytracer::Matrix do
       m[1, 0].should eq 1
       m[1, 1].should eq -2
     end
+
+    it "raises on content too large" do
+      expect_raises(ArgumentError) do
+        Raytracer::Matrix.new(2, 2,
+          [
+            -3, 5,
+            1, -2,
+            0,
+          ]
+        )
+      end
+    end
+
+    it "raises on content too small" do
+      expect_raises(ArgumentError) do
+        Raytracer::Matrix.new(2, 2,
+          [
+            -3, 5,
+            1,
+          ]
+        )
+      end
+    end
+  end
+
+  describe "#[]" do
+    it "raises on out of bounds reads" do
+      m = Raytracer::Matrix.new(2, 2,
+        [
+          -3, 5,
+          1, -2,
+        ]
+      )
+      expect_raises(IndexError) { m[-1, 0] }
+      expect_raises(IndexError) { m[2, 0] }
+      expect_raises(IndexError) { m[0, -1] }
+      expect_raises(IndexError) { m[0, 2] }
+    end
   end
 end

@@ -83,4 +83,62 @@ describe Raytracer::Matrix do
       expect_raises(IndexError) { m[0, 2] }
     end
   end
+
+  describe "#==" do
+    it "with identical matrices" do
+      m1 = Raytracer::Matrix.new(4, 4,
+        [
+          1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 8, 7, 6,
+          5, 4, 3, 2,
+        ]
+      )
+      m2 = Raytracer::Matrix.new(4, 4,
+        [
+          1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 8, 7, 6,
+          5, 4, 3, 2,
+        ]
+      )
+      m1.should eq m2
+    end
+
+    it "with different matrices" do
+      m1 = Raytracer::Matrix.new(4, 4,
+        [
+          1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 8, 7, 6,
+          5, 4, 3, 2,
+        ]
+      )
+      m2 = Raytracer::Matrix.new(4, 4,
+        [
+          2, 3, 4, 5,
+          6, 7, 8, 9,
+          8, 7, 6, 5,
+          4, 3, 2, 1,
+        ]
+      )
+      m1.should_not eq m2
+    end
+
+    it "handles floating points within EPSILON" do
+      m1 = Raytracer::Matrix.new(2, 2,
+        [
+          0.33333, 0.33333,
+          0.33333, 0.33333,
+        ]
+      )
+      m2 = Raytracer::Matrix.new(2, 2,
+        [
+          1.0 / 3.0, 1.0 / 3.0,
+          1.0 / 3.0, 1.0 / 3.0,
+        ]
+      )
+      m1.should eq m2
+    end
+  end
 end

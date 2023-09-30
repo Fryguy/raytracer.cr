@@ -20,5 +20,9 @@ module Raytracer
 
       content[row * rows + column]
     end
+
+    def ==(other)
+      content.each_with_index.all? { |v, i| (v - other.content[i]).abs < EPSILON }
+    end
   end
 end

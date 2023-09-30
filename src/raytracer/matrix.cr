@@ -23,5 +23,18 @@ module Raytracer
     def ==(other)
       content.each_with_index.all? { |v, i| (v - other.content[i]).abs < EPSILON }
     end
+
+    def *(other)
+      new_content =
+        (0...content.size).map do |i|
+          r, c = i.divmod(order)
+          # TODO: Perhaps use Tuple#dot?
+          (0...order).sum do |i|
+            self[r, i] * other[i, c]
+          end
+        end
+
+      self.class.new(order, new_content)
+    end
   end
 end

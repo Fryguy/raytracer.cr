@@ -1,7 +1,7 @@
 describe Raytracer::Matrix do
   describe ".new" do
     it "creates a 4x4 matrix" do
-      m = Raytracer::Matrix.new(4, 4,
+      m = Raytracer::Matrix.new(4,
         [
           1, 2, 3, 4,
           5.5, 6.5, 7.5, 8.5,
@@ -19,7 +19,7 @@ describe Raytracer::Matrix do
     end
 
     it "creates a 2x2 matrix" do
-      m = Raytracer::Matrix.new(2, 2,
+      m = Raytracer::Matrix.new(2,
         [
           -3, 5,
           1, -2,
@@ -32,7 +32,7 @@ describe Raytracer::Matrix do
     end
 
     it "creates a 3x3 matrix" do
-      m = Raytracer::Matrix.new(3, 3,
+      m = Raytracer::Matrix.new(3,
         [
           -3, 5, 0,
           1, -2, -7,
@@ -47,7 +47,7 @@ describe Raytracer::Matrix do
 
     it "raises on content too large" do
       expect_raises(ArgumentError) do
-        Raytracer::Matrix.new(2, 2,
+        Raytracer::Matrix.new(2,
           [
             -3, 5,
             1, -2,
@@ -59,7 +59,7 @@ describe Raytracer::Matrix do
 
     it "raises on content too small" do
       expect_raises(ArgumentError) do
-        Raytracer::Matrix.new(2, 2,
+        Raytracer::Matrix.new(2,
           [
             -3, 5,
             1,
@@ -71,7 +71,7 @@ describe Raytracer::Matrix do
 
   describe "#[]" do
     it "raises on out of bounds reads" do
-      m = Raytracer::Matrix.new(2, 2,
+      m = Raytracer::Matrix.new(2,
         [
           -3, 5,
           1, -2,
@@ -86,7 +86,7 @@ describe Raytracer::Matrix do
 
   describe "#==" do
     it "with identical matrices" do
-      m1 = Raytracer::Matrix.new(4, 4,
+      m1 = Raytracer::Matrix.new(4,
         [
           1, 2, 3, 4,
           5, 6, 7, 8,
@@ -94,7 +94,7 @@ describe Raytracer::Matrix do
           5, 4, 3, 2,
         ]
       )
-      m2 = Raytracer::Matrix.new(4, 4,
+      m2 = Raytracer::Matrix.new(4,
         [
           1, 2, 3, 4,
           5, 6, 7, 8,
@@ -106,7 +106,7 @@ describe Raytracer::Matrix do
     end
 
     it "with different matrices" do
-      m1 = Raytracer::Matrix.new(4, 4,
+      m1 = Raytracer::Matrix.new(4,
         [
           1, 2, 3, 4,
           5, 6, 7, 8,
@@ -114,7 +114,7 @@ describe Raytracer::Matrix do
           5, 4, 3, 2,
         ]
       )
-      m2 = Raytracer::Matrix.new(4, 4,
+      m2 = Raytracer::Matrix.new(4,
         [
           2, 3, 4, 5,
           6, 7, 8, 9,
@@ -126,13 +126,13 @@ describe Raytracer::Matrix do
     end
 
     it "handles floating points within EPSILON" do
-      m1 = Raytracer::Matrix.new(2, 2,
+      m1 = Raytracer::Matrix.new(2,
         [
           0.33333, 0.33333,
           0.33333, 0.33333,
         ]
       )
-      m2 = Raytracer::Matrix.new(2, 2,
+      m2 = Raytracer::Matrix.new(2,
         [
           1.0 / 3.0, 1.0 / 3.0,
           1.0 / 3.0, 1.0 / 3.0,

@@ -69,6 +69,19 @@ describe Raytracer::Matrix do
     end
   end
 
+  describe ".identity" do
+    it "returns the identity matrix" do
+      Raytracer::Matrix.identity.should eq Raytracer::Matrix.new(4,
+        [
+          1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1,
+        ]
+      )
+    end
+  end
+
   describe "#[]" do
     it "raises on out of bounds reads" do
       m = Raytracer::Matrix.new(2,
@@ -169,6 +182,19 @@ describe Raytracer::Matrix do
           16, 26, 46, 42,
         ]
       )
+    end
+
+    it "multiplies with the identity matrix" do
+      m1 = Raytracer::Matrix.new(4,
+        [
+          0, 1, 2, 4,
+          1, 2, 4, 8,
+          2, 4, 8, 16,
+          4, 8, 16, 32,
+        ]
+      )
+      m2 = m1 * Raytracer::Matrix.identity
+      m2.should eq m1
     end
 
     it "multiplies a matrix with a Tuple" do

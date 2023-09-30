@@ -2,6 +2,12 @@ require "./tuple"
 
 module Raytracer
   class Matrix
+    @@identity : self?
+
+    def self.identity
+      @@identity ||= new(4, [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1])
+    end
+
     getter order : Int32
     getter content : Array(Float64)
 

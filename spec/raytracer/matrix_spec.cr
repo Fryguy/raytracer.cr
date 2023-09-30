@@ -211,4 +211,30 @@ describe Raytracer::Matrix do
       t2.should eq Raytracer::Tuple.new(18, 24, 33, 1)
     end
   end
+
+  describe "#transpose" do
+    it "transposes the matrix" do
+      m1 = Raytracer::Matrix.new(4,
+        [
+          0, 9, 3, 0,
+          9, 8, 0, 8,
+          1, 8, 5, 3,
+          0, 0, 5, 8,
+        ]
+      )
+      m2 = Raytracer::Matrix.new(4,
+        [
+          0, 9, 1, 0,
+          9, 8, 8, 0,
+          3, 0, 5, 5,
+          0, 8, 3, 8,
+        ]
+      )
+      m1.transpose.should eq m2
+    end
+
+    it "transposes the identity matrix to itself" do
+      Raytracer::Matrix.identity.transpose.should eq Raytracer::Matrix.identity
+    end
+  end
 end

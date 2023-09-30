@@ -55,5 +55,18 @@ module Raytracer
 
       Raytracer::Tuple.new(x, y, z, w)
     end
+
+    @transpose : self?
+
+    def transpose
+      @transpose ||= begin
+        new_content = Array(Float64).new(content.size, 0)
+        content.each_with_index do |v, i|
+          r, c = i.divmod(order)
+          new_content[c * order + r] = v
+        end
+        self.class.new(order, new_content)
+      end
+    end
   end
 end

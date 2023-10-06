@@ -68,5 +68,16 @@ module Raytracer
         self.class.new(order, new_content)
       end
     end
+
+    @determinant : Float64?
+
+    def determinant
+      @determinant ||= begin
+        raise NotImplementedError.new("determinant has only been implemented for 2x2 matrices") unless order == 2
+
+        a, b, c, d = content
+        a * d - b * c
+      end
+    end
   end
 end

@@ -237,4 +237,29 @@ describe Raytracer::Matrix do
       Raytracer::Matrix.identity.transpose.should eq Raytracer::Matrix.identity
     end
   end
+
+  describe "#determinant" do
+    it "calculates the determinant of a 2x2 matrix" do
+      m = Raytracer::Matrix.new(2,
+        [
+          1, 5,
+          -3, 2,
+        ]
+      )
+      m.determinant.should eq 17
+    end
+
+    it "only takes the determinant of a 2x2 matrix" do
+      m = Raytracer::Matrix.new(3,
+        [
+          1, 5, 6,
+          -3, 2, 7,
+          8, 9, 0,
+        ]
+      )
+      expect_raises(NotImplementedError) do
+        m.determinant
+      end
+    end
+  end
 end

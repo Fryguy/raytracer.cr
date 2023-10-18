@@ -29,7 +29,8 @@ module Raytracer
     end
 
     def ==(other)
-      content.each_with_index.all? { |v, i| (v - other.content[i]).abs < EPSILON }
+      order == other.order &&
+        content.each_with_index.all? { |v, i| (v - other.content[i]).abs < EPSILON }
     end
 
     def *(other : Matrix)
@@ -78,6 +79,18 @@ module Raytracer
         a, b, c, d = content
         a * d - b * c
       end
+    end
+
+    def submatrix(row, col)
+      raise ArgumentError.new("cannot take a submatrix of a 2x2 matrix or smaller") if order <= 2
+
+      new_content =
+        content.each_with_index.select do |v, i|
+          r, c = i.divmod(order)
+          r != row && c != col
+        end.map(&.first).to_a
+
+      self.class.new(order - 1, new_content)
     end
   end
 end

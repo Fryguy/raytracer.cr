@@ -138,6 +138,23 @@ describe Raytracer::Matrix do
       m1.should_not eq m2
     end
 
+    it "with different sized matrices" do
+      m1 = Raytracer::Matrix.new(2,
+        [
+          -3, 5,
+          1, -2,
+        ]
+      )
+      m2 = Raytracer::Matrix.new(3,
+        [
+          1, 5, 0,
+          -3, 2, 7,
+          0, 6, -3,
+        ]
+      )
+      m1.should_not eq m2
+    end
+
     it "handles floating points within EPSILON" do
       m1 = Raytracer::Matrix.new(2,
         [
@@ -252,13 +269,61 @@ describe Raytracer::Matrix do
     it "only takes the determinant of a 2x2 matrix" do
       m = Raytracer::Matrix.new(3,
         [
-          1, 5, 6,
+          1, 5, 0,
           -3, 2, 7,
-          8, 9, 0,
+          0, 6, -3,
         ]
       )
       expect_raises(NotImplementedError) do
         m.determinant
+      end
+    end
+  end
+
+  describe "#submatrix" do
+    it "of a 3x3 matrix is a 2x2 matrix" do
+      m = Raytracer::Matrix.new(3,
+        [
+          1, 5, 0,
+          -3, 2, 7,
+          0, 6, -3,
+        ]
+      )
+      m.submatrix(0, 2).should eq Raytracer::Matrix.new(2,
+        [
+          -3, 2,
+          0, 6,
+        ]
+      )
+    end
+
+    it "of a 4x4 matrix is a 3x3 matrix" do
+      m = Raytracer::Matrix.new(4,
+        [
+          -6, 1, 1, 6,
+          -8, 5, 8, 6,
+          -1, 0, 8, 2,
+          -7, 1, -1, 1,
+        ]
+      )
+      m.submatrix(2, 1).should eq Raytracer::Matrix.new(3,
+        [
+          -6, 1, 6,
+          -8, 8, 6,
+          -7, -1, 1,
+        ]
+      )
+    end
+
+    it "raises with a 2x2 matrix" do
+      m = Raytracer::Matrix.new(2,
+        [
+          -3, 2,
+          0, 6,
+        ]
+      )
+      expect_raises(ArgumentError) do
+        m.submatrix(1, 1)
       end
     end
   end
